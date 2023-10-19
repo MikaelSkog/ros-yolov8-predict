@@ -7,11 +7,12 @@ In order to run the ROS node, [Ultralytics YOLOv8](https://github.com/ultralytic
 ```bash
 pip install ultralytics
 ```
+You also need a YOLOv8 model, saved as a file with the name `last.pt`
 
 ### Installation
 1. Clone the repo into the _src_ folder of your ROS Catkin workspace.
    ```bash
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/MikaelSkog/ros-yolov8-predict.git
    ```
 2. Build this package in your Catkin workspace. In your workspace directory:
    ```bash
@@ -19,9 +20,9 @@ pip install ultralytics
    ```
 
 ## Usage
-Before starting the node, make sure that images are first being published to the ROS topic `/flir_camera/image_raw/compressed`.
+Before starting the node, make sure that images are being published to the ROS topic `/flir_camera/image_raw/compressed`.
 
-To run the node:
+To run the node, execute the following command from the directory containing your YOLOv8 model with the name `last.pt`:
 ```
 rosrun yolo_predict predict.py
 ```
