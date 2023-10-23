@@ -1,18 +1,18 @@
+import sys
 import rospy
 import sensor_msgs.msg
 from cv_bridge import CvBridge
 from ultralytics import YOLO
 import cv2
 
-class Predicter():
-    def __init__(self):
-        rospy.loginfo('YOLOv8 predicter initialized.')
+class Predicter:
+    def __init__(self, model_path):
         self.img_obtained = False # Whether at least one image has been received.
         self.received_img = None  # Last received image.
         self.bridge = CvBridge()
 
         # Use 'last.pt' for the model weights (located in working dir when running the node).
-        model = YOLO('last.pt')
+        model = YOLO(model_path)
 
         # Make this node both a subscriber and publisher.
         self.pub = rospy.Publisher('yolo_prediction/compressed', sensor_msgs.msg.CompressedImage, queue_size=0)
@@ -40,4 +40,12 @@ class Predicter():
 
 if __name__ == '__main__':
     rospy.init_node('predict')
-    predicter = Predicter()
+    rospy.loginfo('YOLOv8 predicter initialized.')
+    args = rospy.myargv(argv=sys.argv)
+
+    # Make sure that exactly one argument was provided
+    if len(args) != 2:
+        rospy.logerr("ERROR: Wrong number of parameters provided.")
+        sys.exit(1)
+
+    predicter = Predicter(args[1])
