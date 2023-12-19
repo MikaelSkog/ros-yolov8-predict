@@ -4,17 +4,17 @@ Python 3 script for a ROS node that subscribes to an image topic and then publis
 ## Getting Started
 ### Prerequisites
 In order to run the ROS node, [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) needs to be installed in your Python environment. To install the package and its dependencies with PIP:
-```bash
-pip install ultralytics
+```
+pip3 install ultralytics
 ```
 
 ### Installation
 1. Clone the repo into the _src_ folder of your ROS Catkin workspace.
-   ```bash
+   ```
    git clone https://github.com/MikaelSkog/ros-yolov8-predict.git
    ```
 2. Build this package in your Catkin workspace. In your workspace directory, execute
-   ```bash
+   ```
    catkin_make
    ```
 
